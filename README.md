@@ -3,21 +3,19 @@
 Official code for "[Exploring and exploiting model uncertainty for robust visual question answering](https://link.springer.com/article/10.1007/s00530-024-01560-0)" **(Multimedia 2024 Accepted)** 
 
 
-This repository is the official implementation of **[Seeing is Believing? Enhancing Vision-Language Navigation using Visual Perturbations](https://arxiv.org/abs/2409.05552).**
-
 >Visual Question Answering (VQA) methods have been widely demonstrated to exhibit bias in answering questions due to the distribution differences of answer samples between training and testing, resulting in resultant performance degradation. While numerous efforts have demonstrated promising results in overcoming language bias, broader implications (e.g., the trustworthiness of current VQA model predictions) of the problem remain unexplored. In this paper, we aim to provide a different viewpoint on the problem from the perspective of model uncertainty. In a series of empirical studies on the VQA-CP v2 dataset, we find that current VQA models are often biased towards making obviously incorrect answers with high confidence, i.e., being overconfident, which indicates high uncertainty. In light of this observation, we: (1) design a novel metric for monitoring model overconfidence, and (2) propose a model calibration method to address the overconfidence issue, thereby making the model more reliable and better at generalization. The calibration method explicitly imposes constraints on model predictions to make the model less confident during training. It has the advantage of being model-agnostic and computationally efficient. Experiments demonstrate that VQA approaches exhibiting overconfidence are usually negatively impacted in terms of generalization, and fortunately their performance and trustworthiness can be boosted by the adoption of our calibration method. 
 
 > ![image](https://github.com/user-attachments/assets/ef546396-63ff-4a53-a88e-07fe81c927ac)
 
-One merit of our method is that it is agnostic to model architectures. Therfore， as described in the paper, our method can be adapted to previous models such as CSS, SSL, UpDn, etc.
+One merit of our method is that it is agnostic to model architectures. Therfore， as described in the paper, our method can be adapted to previous models such as [CSS](https://github.com/yanxinzju/CSS-VQA) , [SSL](https://github.com/CrossmodalGroup/SSL-VQA), [UpDn](https://github.com/chrisc36/bottom-up-attention-vqa), etc.
 
-## 1. Requirements
+## Requirements
 Python 3.8.8
 Pytorch 1.9.0+cu111
 Cuda 11.0
 Gpu Nvidia 2080ti（11G）
 
-## 2. Data Setup
+## Data Setup
 You can use
 ```
 bash CSS+conf/tools/download.sh
@@ -53,7 +51,7 @@ CUDA_VISIBLE_DEVICES=7 python eval.py --dataset cpv2 --debias learned_mixin --mo
 ```
 
 ## Key implementation codes
-The model implementation is mainly based on the loss function of calibration confidence, and the key code is here and here. 
+The model implementation is mainly based on the loss function of calibration confidence, and the key code is [here](https://github.com/shonnon-zxs/VQA-uncertainty/blob/mms/base_model.py#L19) and [here](https://github.com/shonnon-zxs/VQA-uncertainty/blob/mms/base_model.py#L86). 
 ```
 # L_tacs gt
 def compute_self_loss(logits_neg, labels):
@@ -101,5 +99,6 @@ python acc_per_type.py
 }
   ```
 
-
+### Acknowledgments
+[CSS](https://github.com/yanxinzju/CSS-VQA) , [SSL](https://github.com/CrossmodalGroup/SSL-VQA), [UpDn](https://github.com/chrisc36/bottom-up-attention-vqa), etc. many thanks
 
