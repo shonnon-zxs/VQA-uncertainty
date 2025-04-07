@@ -18,7 +18,7 @@ Gpu Nvidia 2080ti（11G）
 ## Data Setup
 You can use
 ```
-bash CSS+conf/tools/download.sh
+bash /tools/download.sh
 ```
 to download the data <br> and the rest of the data and trained model can be obtained from [BaiduYun](https://pan.baidu.com/s/1oHdwYDSJXC1mlmvu8cQhKw)(passwd:3jot) or [MEGADrive](https://mega.nz/folder/0JBzGBZD#YGgonKMnwqmeSZmoV7hjMg) unzip feature1.zip and feature2.zip and merge them into data/rcnn_feature/ <br> use
 ```
